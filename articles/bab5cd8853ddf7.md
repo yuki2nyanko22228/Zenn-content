@@ -6,7 +6,7 @@ topics: ["javascript", "nodejs", "discord", "discordjs"]
 published: true
 ---
 
-discord.jsのsetActivityの全てです。
+discord.js の setActivity の全てです。
 ステータスの設定などにご利用ください。
 
 # PLAYING
