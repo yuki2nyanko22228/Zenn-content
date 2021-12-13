@@ -15,9 +15,9 @@ if (message.content === "!omikuji") {
   let arr = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"];
   var random = Math.floor(Math.random() * arr.length);
   var result = arr[random];
-  message.reply(result)
+  message.reply(result);
 }
 ```
 
 ※ネタ提供ありがとうございます！
-  最近ネタ切れ続きなので
+最近ネタ切れ続きなので。

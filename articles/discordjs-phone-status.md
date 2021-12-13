@@ -6,14 +6,16 @@ topics: ["javascript", "nodejs", "discord", "discordjs"]
 published: true
 ---
 
-botをスマホステータスにする小ネタです。
+bot をスマホステータスにする小ネタです。
 
-clientの定義を以下のようにしてみてください。
+client の定義を以下のようにしてみてください。
 
 ```js
-const client = new discord.Client({ ws: { properties: { $browser: "Discord iOS" } } });
+const client = new discord.Client({
+  ws: { properties: { $browser: "Discord iOS" } },
+});
 ```
 
-しばらくするとスマホステータスになっているかと思います。
+しばらくするとスマホステータスになっているはずです。
 
 以上です。

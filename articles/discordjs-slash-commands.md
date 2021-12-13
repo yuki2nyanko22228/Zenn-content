@@ -8,40 +8,40 @@ published: true
 
 こんにちは！
 
-この記事では、Discord.jsでSlash commandsを作る方法をご紹介します。
+この記事では、Discord.js で Slash commands を作る方法をご紹介します。
 
 :::message alert
-iOSアプリでオプションの値が増殖する不具合があるようです。
+iOS アプリでオプションの値が増殖する不具合があるようです。
 
 完全に移行するのはしばらく後になりそうですね。
 :::
 
 ![](https://storage.googleapis.com/zenn-user-upload/egmye70n5wyeaxtwa905det8r823)
-*Slash Commandsの例 (ドキュメントより)*
+_Slash Commands の例 (ドキュメントより)_
 
 # Step1 コマンドの作成
 
-登録を開始する前に、Botを招待する際に`applications.commands`スコープも選択して招待したか確認してください。
+登録を開始する前に、Bot を招待する際に `applications.commands` スコープも選択して招待したか確認してください。
 
-もし選択していなかった場合は、↓のURLからBotに権限を持たせてください。
+もし選択していなかった場合は、↓ の URL から Bot に権限を持たせてください。
 
 ```
 https://discord.com/api/oauth2/authorize?client_id=<BotIDをここへ>&scope=applications.commands
 ```
 
-Slash Commandsは現在オープンベータ版という位置付けのため、コマンドをGUIで登録することはまだ不可能です。
+Slash Commands は現在オープンベータ版という位置付けのため、コマンドを GUI で登録することはまだ不可能です。
 
-その代わりとして、HTTPリクエストを使って登録する必要があります。
+その代わりとして、HTTP リクエストを使って登録する必要があります。
 
-Slash Commandsには、ギルドコマンドとグローバルコマンドの2種類があります。
+Slash Commands には、ギルドコマンドとグローバルコマンドの 2 種類があります。
 
-名前から分かるように、ギルドコマンドはサーバーごとに登録し、Botが各サーバーごとに違うコマンドを作成できるようになっています。(専属Bot等に便利です)
+名前から分かるように、ギルドコマンドはサーバーごとに登録し、Bot が各サーバーごとに違うコマンドを作成できるようになっています。(専属 Bot 等に便利です)
 
-一方、グローバルコマンドは、Botが参加しているすべてのサーバーに登録されます。(公開Bot等に便利です)
+一方、グローバルコマンドは、Bot が参加しているすべてのサーバーに登録されます。(公開 Bot 等に便利です)
 
 この記事ではギルドコマンドを使用しますが、グローバルコマンドを使用する場合の方法もほぼ同じです。
 
-Slash CommandsはJSONでデータを登録します。以下がその例です。
+Slash Commands は JSON でデータを登録します。以下がその例です。
 
 ```json
 {
@@ -54,23 +54,23 @@ Slash CommandsはJSONでデータを登録します。以下がその例です�
 }
 ```
 
-コマンド設定の詳細は↓をご確認ください
+コマンド設定の詳細は ↓ をご確認ください。
 
 https://discord.com/developers/docs/interactions/slash-commands#applicationcommand
 
 # Step2 コマンドの登録
 
-コマンドのデータを作成できたら、Discordに登録しましょう！
+コマンドのデータを作成できたら、Discord に登録しましょう！
 
-コマンドをDiscordに登録するには、次の3つが必要です。
+コマンドを Discord に登録するには、次の 3 つが必要です。
 
-- Step2で作成したコマンドのデータ
+- Step2 で作成したコマンドのデータ
 
-- APIエンドポイント (次で解説します)
+- API エンドポイント (次で解説します)
 
 - Bot TOKEN
 
-ギルドコマンドとグローバルコマンドでは、APIエンドポイントが異なります。
+ギルドコマンドとグローバルコマンドでは、API エンドポイントが異なります。
 
 ## グローバルコマンドの場合
 
@@ -84,15 +84,16 @@ https://discord.com/api/v8/applications/<BotIDをここへ>/commands
 https://discord.com/api/v8/applications/<BotIDをここへ>/guilds/<サーバーIDをここへ>/commands
 ```
 
-## Node.jsで登録する
+## Node.js で登録する
 
 エンドポイントが分かったところで、登録に進みましょう。
 
-## node_fetch & requestをインストール
+## node_fetch & request をインストール
 
 ```sh
 npm install node_fetch request
 ```
+
 を実行します。
 
 ## プログラムを組む
@@ -124,44 +125,42 @@ async function main () {
 main()
 ```
 
-`commandData`等、値は適宜入れ替えてください。
+`commandData` 等、値は適宜入れ替えてください。
 
-編集して保存したら、
+編集して保存したら、以下のコマンドを実行します。
 
 ```sh
 node index.js
 ```
 
-を実行します。
-
 エラーが発生した場合は、よく確認してやり直してみてください。
 
-それでも無理な場合は、↓のコメント欄に書いていただければ対応します。
+それでも無理な場合は、↓ のコメント欄に書いていただければ対応します。
 
 # Step3 コマンドの実装
 
-Step2でコマンドが登録できたので、ユーザーが`/`を入力するとコマンドが表示されます。
+Step2 でコマンドが登録できたので、ユーザーが `/` を入力するとコマンドが表示されます。
 
-ですが、まだbot側が対応していないのでコマンドを使用しても失敗します。
+ですが、まだ bot 側が対応していないのでコマンドを使用しても失敗します。
 
-discord.jsはまだ正式にSlash Commandsをサポートしていませんが、WebSocketにフックして、正式対応までの間は実装できます。
+discord.js はまだ正式に Slash Commands をサポートしていませんが、WebSocket にフックして、正式対応までの間は実装できます。
 
-以下は、利用者がコマンドを実行したときにDiscordから受信するデータの一部です。
+以下は、利用者がコマンドを実行したときに Discord から受信するデータの一部です。
 
 ```json
 {
-  version: 1,
-  type: 2,
-  member: {
+  "version": 1,
+  "type": 2,
+  "member": {
     // メンバー情報がここに
   },
-  guild_id: '000', // 実行したサーバーのID
-  data: { name: 'test', id: '000' },
-  channel_id: '000' // 実行したチャンネルのID
+  "guild_id": "000", // 実行したサーバーのID
+  "data": { "name": "test", "id": "000" },
+  "channel_id": "000" // 実行したチャンネルのID
 }
 ```
 
-このデータを使用して、「Hello World!」とチャンネルに送信するbotを作ります。
+このデータを使用して、「Hello World.」とチャンネルに送信する bot を作ります。
 
 (先ほど登録に使ったプログラムは消して置き換えてください)
 
@@ -179,7 +178,7 @@ client.on('ready', () => {
 	    data: {
 		  type: 4,
 		  data: {
-		    content: `Hello World!`
+		    content: `Hello World.`
 		  }
 		}
 	  });
@@ -190,9 +189,9 @@ client.on('ready', () => {
 client.login('<Bot TOKENをここへ>')
 ```
 
-これでbotは完成です。
+これで bot は完成です。
 
-`/test`を使うと、botから「Hello World!」と返ってくるかと思います。
+`/test` を使うと、bot から「Hello World.」と返ってきます。
 
 # おわり
 
