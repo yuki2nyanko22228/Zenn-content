@@ -15,7 +15,8 @@
       "no-doubled-joshi": {
         "strict": false,
         "allow": [
-          "か"
+          "か",
+          "が"
         ]
       }
     },

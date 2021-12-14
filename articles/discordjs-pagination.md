@@ -49,4 +49,4 @@ client.login("<TOKENをここへ>")
 
 https://discordjs.guide/popular-topics/embeds.html#using-the-richembedmessageembed-constructor
 
-Embedに関しては、Messageembedが使えるっぽいです。
+Embed に関しては、Messageembed が使えるっぽいです。
