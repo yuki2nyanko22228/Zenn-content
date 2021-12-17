@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "zenn-cli": "^0.1.99"
+    "zenn-cli": "^0.1.100"
   },
   "devDependencies": {
     "textlint": "^12.1.0",
